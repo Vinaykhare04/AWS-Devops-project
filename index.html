@@ -1,65 +1,104 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title> AWS Devops Project </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-      /* Style the header */
-      header {
-        background-color:rgb(182, 75, 209);
-        padding: 30px;
-        text-align: center;
-        color: white;
-        font-size: 36px;
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .calculator {
+      background: #fff;
+      padding: 20px 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    #display {
+      width: 100%;
+      height: 40px;
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      text-align: right;
+      padding: 0 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    button {
+      padding: 15px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      background: #e0e0e0;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button.operator {
+      background: #ffb74d;
+    }
+    button.equals {
+      background: #4caf50;
+      color: #fff;
+      grid-column: span 2;
+    }
+    button.clear {
+      background: #e57373;
+      color: #fff;
+      grid-column: span 2;
+    }
+    button:active {
+      background: #bdbdbd;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" disabled>
+    <div class="buttons">
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button class="operator" onclick="append('/')">÷</button>
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button class="operator" onclick="append('*')">×</button>
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button class="operator" onclick="append('-')">−</button>
+      <button onclick="append('0')">0</button>
+      <button onclick="append('.')">.</button>
+      <button class="operator" onclick="append('+')">+</button>
+      <button class="clear" onclick="clearDisplay()">C</button>
+      <button class="equals" onclick="calculate()">=</button>
+    </div>
+  </div>
+  <script>
+    const display = document.getElementById('display');
+    function append(value) {
+      display.value += value;
+    }
+    function clearDisplay() {
+      display.value = '';
+    }
+    function calculate() {
+      try {
+        display.value = eval(display.value);
+      } catch {
+        display.value = 'Error';
       }
-      /* Style the top navigation bar */
-      nav {
-        background-color: #f2f2f2;
-        overflow: hidden;
-        text-align: center;
-      }
-      nav a {
-        display: inline-block;
-        color: #333;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 20px;
-      }
-      nav a:hover {
-        background-color: #ddd;
-        color: #0073e6;
-      }
-      /* Style the content */
-      main {
-        padding: 20px;
-        text-align: center;
-      }
-      main h2 {
-        font-size: 32px;
-        color: #0073e6;
-      }
-      main p {
-        font-size: 24px;
-        color: #333;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <h1>AWS </h1>
-    </header>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Services</a>
-      <a href="#">Pricing</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-    </nav>
-    <main>
-      <h2>Welcome to AWS  </h2>
-      <p>We offer a wide range of cloud computing services to help your business succeed.</p>
-      <p>Contact us today to learn more about how we can help you achieve your goals.</p>
-    </main>
-  </body>
+    }
+  </script>
+</body>
 </html>
