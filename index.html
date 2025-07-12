@@ -1,125 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Simple Calculator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .calculator {
-      background: #fff;
-      padding: 20px 25px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      width: 300px;
-      margin-bottom: 20px;
-    }
-    #display {
-      width: 100%;
-      height: 40px;
-      font-size: 1.5em;
-      margin-bottom: 15px;
-      text-align: right;
-      padding: 0 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
-    button {
-      padding: 15px;
-      font-size: 1em;
-      border: none;
-      border-radius: 5px;
-      background: #e0e0e0;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    button.operator {
-      background: #ffb74d;
-    }
-    button.equals {
-      background: #4caf50;
-      color: #fff;
-      grid-column: span 2;
-    }
-    button.clear {
-      background: #e57373;
-      color: #fff;
-      grid-column: span 2;
-    }
-    button:active {
-      background: #bdbdbd;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      color: #333;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-    footer {
-      margin-top: 20px;
-      color: #888;
-      font-size: 1em;
-      text-align: center;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Vinay Khare | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f7f7f7; color: #222; }
+        header { background: #232f3e; color: #fff; padding: 30px 0; text-align: center; }
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; gap: 30px; }
+        nav a { color: #fff; text-decoration: none; font-weight: bold; }
+        .container { max-width: 900px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);}
+        h1, h2 { color: #1a237e; }
+        .about, .skills, .projects, .contact { margin-bottom: 40px; }
+        .skills-list, .projects-list { display: flex; flex-wrap: wrap; gap: 20px; }
+        .skills-list li, .projects-list li { background: #e3eafc; padding: 8px 18px; border-radius: 6px; }
+        .projects-list { flex-direction: column; }
+        .project { background: #f1f8e9; padding: 18px; border-radius: 8px; margin-bottom: 12px; }
+        .contact-info { margin-top: 10px; }
+        @media (max-width: 600px) {
+            .container { padding: 10px; }
+            .skills-list, .projects-list { flex-direction: column; gap: 10px; }
+        }
+    </style>
 </head>
 <body>
-  <h2>Simple Calculator</h2>
-  <div class="calculator">
-    <input type="text" id="display" disabled>
-    <div class="buttons">
-      <button onclick="append('7')">7</button>
-      <button onclick="append('8')">8</button>
-      <button onclick="append('9')">9</button>
-      <button class="operator" onclick="append('/')">÷</button>
-      <button onclick="append('4')">4</button>
-      <button onclick="append('5')">5</button>
-      <button onclick="append('6')">6</button>
-      <button class="operator" onclick="append('*')">×</button>
-      <button onclick="append('1')">1</button>
-      <button onclick="append('2')">2</button>
-      <button onclick="append('3')">3</button>
-      <button class="operator" onclick="append('-')">−</button>
-      <button onclick="append('0')">0</button>
-      <button onclick="append('.')">.</button>
-      <button class="operator" onclick="append('+')">+</button>
-      <button class="clear" onclick="clearDisplay()">C</button>
-      <button class="equals" onclick="calculate()">=</button>
+    <header>
+        <h1>Vinay Khare</h1>
+        <p>BCA + MCA | Software Engineer at Yash Technologies</p>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <section id="about" class="about">
+            <h2>About Me</h2>
+            <p>
+                Hello! I'm <strong>Vinay Khare</strong>, a passionate software developer with a BCA and MCA, currently working at Yash Technologies. I specialize in building robust, scalable solutions and have hands-on experience in both backend and frontend technologies. I enjoy solving real-world problems and continuously learning new tools and frameworks.
+            </p>
+        </section>
+        <section id="skills" class="skills">
+            <h2>Skills</h2>
+            <ul class="skills-list">
+                <li><strong>Python</strong></li>
+                <li><strong>SQL</strong></li>
+                <li><strong>React</strong></li>
+                <li><strong>C/C++</strong></li>
+                <li><strong>AWS</strong></li>
+                <li>HTML5 &amp; CSS3</li>
+                <li>JavaScript</li>
+                <li>Git &amp; CI/CD</li>
+                <li>Bootstrap</li>
+                <li>Linux</li>
+                <li>Docker</li>
+                <li>Machine Learning (ML)</li>
+            </ul>
+        </section>
+        <section id="projects" class="projects">
+            <h2>Projects</h2>
+            <ul class="projects-list">
+                <li class="project">
+                    <strong>Gym Management System (Python)</strong><br>
+                    Developed a comprehensive system to manage memberships, trainers, schedules, and payments for a gym. Implemented using Python and SQLite.
+                </li>
+                <li class="project">
+                    <strong>Movie Recommendation System (Machine Learning)</strong><br>
+                    Built a content-based and collaborative filtering movie recommendation system using Python, pandas, and scikit-learn.
+                </li>
+                <li class="project">
+                    <strong>Personal Portfolio Website with CI/CD Pipeline</strong><br>
+                    Designed and deployed a personal portfolio website with automated deployment using GitHub Actions and AWS.
+                </li>
+            </ul>
+        </section>
+        <section id="contact" class="contact">
+            <h2>Contact</h2>
+            <div class="contact-info">
+                <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+                <p>LinkedIn: <a href="#" target="_blank">linkedin.com/in/vinaykhare</a></p>
+            </div>
+        </section>
     </div>
-  </div>
-  <footer>
-    Created by Vinay Khare
-  </footer>
-  <script>
-    const display = document.getElementById('display');
-    function append(value) {
-      display.value += value;
-    }
-    function clearDisplay() {
-      display.value = '';
-    }
-    function calculate() {
-      try {
-        display.value = eval(display.value);
-      } catch {
-        display.value = 'Error';
-      }
-    }
-  </script>
 </body>
 </html>
-
