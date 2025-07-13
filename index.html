@@ -1,89 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Vinay Khare | Portfolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; background: #f7f7f7; color: #222; }
-        header { background: #232f3e; color: #fff; padding: 30px 0; text-align: center; }
-        nav ul { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; gap: 30px; }
-        nav a { color: #fff; text-decoration: none; font-weight: bold; }
-        .container { max-width: 900px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);}
-        h1, h2 { color: #1a237e; }
-        .about, .skills, .projects, .contact { margin-bottom: 40px; }
-        .skills-list, .projects-list { display: flex; flex-wrap: wrap; gap: 20px; }
-        .skills-list li, .projects-list li { background: #e3eafc; padding: 8px 18px; border-radius: 6px; }
-        .projects-list { flex-direction: column; }
-        .project { background: #f1f8e9; padding: 18px; border-radius: 8px; margin-bottom: 12px; }
-        .contact-info { margin-top: 10px; }
-        @media (max-width: 600px) {
-            .container { padding: 10px; }
-            .skills-list, .projects-list { flex-direction: column; gap: 10px; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>All-in-One Investment & EMI Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f8fb; margin: 0; padding: 0; }
+    .container { max-width: 520px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 16px #0001; padding: 32px; }
+    h1 { text-align: center; color: #1a73e8; margin-bottom: 10px; }
+    .tabs { display: flex; justify-content: center; margin-bottom: 24px; }
+    .tab-btn {
+      flex: 1;
+      padding: 12px 0;
+      background: #e3eafc;
+      border: none;
+      border-radius: 6px 6px 0 0;
+      color: #1a237e;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-right: 2px;
+    }
+    .tab-btn.active { background: #1a73e8; color: #fff; }
+    form { display: none; }
+    form.active { display: block; }
+    label { display: block; margin: 12px 0 4px; color: #333; }
+    input[type="number"] {
+      width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #bfc9d1; margin-bottom: 10px;
+      font-size: 1em; box-sizing: border-box;
+    }
+    input[type="submit"] {
+      background: #1a73e8; color: #fff; border: none; padding: 12px 0; border-radius: 6px;
+      width: 100%; font-size: 1em; font-weight: bold; cursor: pointer; margin-top: 8px;
+      transition: background 0.2s;
+    }
+    input[type="submit"]:hover { background: #1765c1; }
+    .result { background: #e3f2fd; border-radius: 8px; padding: 16px; margin-top: 20px; color: #1a237e; }
+    .explanation { font-size: 0.95em; color: #555; margin-top: 10px; }
+    @media (max-width: 600px) {
+      .container { padding: 12px; }
+      h1 { font-size: 1.5em; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Vinay Khare</h1>
-        <p>BCA + MCA | Software Engineer at Yash Technologies</p>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="container">
-        <section id="about" class="about">
-            <h2>About Me</h2>
-            <p>
-                Hello! I'm <strong>Vinay Khare</strong>, a passionate software developer with a BCA and MCA, currently working at Yash Technologies. I specialize in building robust, scalable solutions and have hands-on experience in both backend and frontend technologies. I enjoy solving real-world problems and continuously learning new tools and frameworks.
-            </p>
-        </section>
-        <section id="skills" class="skills">
-            <h2>Skills</h2>
-            <ul class="skills-list">
-                <li><strong>Python</strong></li>
-                <li><strong>SQL</strong></li>
-                <li><strong>React</strong></li>
-                <li><strong>C/C++</strong></li>
-                <li><strong>AWS</strong></li>
-                <li>HTML5 &amp; CSS3</li>
-                <li>JavaScript</li>
-                <li>Git &amp; CI/CD</li>
-                <li>Bootstrap</li>
-                <li>Linux</li>
-                <li>Docker</li>
-                <li>Machine Learning (ML)</li>
-            </ul>
-        </section>
-        <section id="projects" class="projects">
-            <h2>Projects</h2>
-            <ul class="projects-list">
-                <li class="project">
-                    <strong>Gym Management System (Python)</strong><br>
-                    Developed a comprehensive system to manage memberships, trainers, schedules, and payments for a gym. Implemented using Python and SQLite.
-                </li>
-                <li class="project">
-                    <strong>Movie Recommendation System (Machine Learning)</strong><br>
-                    Built a content-based and collaborative filtering movie recommendation system using Python, pandas, and scikit-learn.
-                </li>
-                <li class="project">
-                    <strong>Personal Portfolio Website with CI/CD Pipeline</strong><br>
-                    Designed and deployed a personal portfolio website with automated deployment using GitHub Actions and AWS.
-                </li>
-            </ul>
-        </section>
-        <section id="contact" class="contact">
-            <h2>Contact</h2>
-            <div class="contact-info">
-                <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-                <p>LinkedIn: <a href="#" target="_blank">linkedin.com/in/vinaykhare</a></p>
-            </div>
-        </section>
+  <div class="container">
+    <h1>Investment & EMI Calculator</h1>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab(0)">SIP</button>
+      <button class="tab-btn" onclick="showTab(1)">Lump Sum</button>
+      <button class="tab-btn" onclick="showTab(2)">Loan EMI</button>
     </div>
+
+    <!-- SIP Calculator -->
+    <form id="sip-form" class="active" onsubmit="calculateSIP(event)">
+      <label for="sip-amount">Monthly Investment (₹):</label>
+      <input type="number" id="sip-amount" min="1" required>
+      <label for="sip-rate">Expected Annual Return (%):</label>
+      <input type="number" id="sip-rate" min="1" step="0.01" required>
+      <label for="sip-years">Investment Period (years):</label>
+      <input type="number" id="sip-years" min="1" required>
+      <input type="submit" value="Calculate SIP">
+      <div class="result" id="sip-result"></div>
+      <div class="explanation">
+        SIP (Systematic Investment Plan) calculates wealth accumulation by investing a fixed amount every month at a given annual return rate.
+      </div>
+    </form>
+
+    <!-- Lump Sum Calculator -->
+    <form id="lump-form" onsubmit="calculateLumpSum(event)">
+      <label for="lump-amount">Initial Investment (₹):</label>
+      <input type="number" id="lump-amount" min="1" required>
+      <label for="lump-rate">Expected Annual Return (%):</label>
+      <input type="number" id="lump-rate" min="1" step="0.01" required>
+      <label for="lump-years">Investment Period (years):</label>
+      <input type="number" id="lump-years" min="1" required>
+      <input type="submit" value="Calculate Lump Sum">
+      <div class="result" id="lump-result"></div>
+      <div class="explanation">
+        Lump Sum calculates the future value of a one-time investment at a fixed annual return rate.
+      </div>
+    </form>
+
+    <!-- Loan EMI Calculator -->
+    <form id="emi-form" onsubmit="calculateEMI(event)">
+      <label for="emi-principal">Loan Amount (₹):</label>
+      <input type="number" id="emi-principal" min="1" required>
+      <label for="emi-rate">Annual Interest Rate (%):</label>
+      <input type="number" id="emi-rate" min="0.01" step="0.01" required>
+      <label for="emi-years">Loan Tenure (years):</label>
+      <input type="number" id="emi-years" min="1" required>
+      <input type="submit" value="Calculate EMI">
+      <div class="result" id="emi-result"></div>
+      <div class="explanation">
+        EMI (Equated Monthly Installment) is the fixed payment amount made by a borrower to a lender at a specified date each calendar month.
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Tab switching logic
+    function showTab(idx) {
+      const forms = [document.getElementById('sip-form'), document.getElementById('lump-form'), document.getElementById('emi-form')];
+      const tabs = document.querySelectorAll('.tab-btn');
+      forms.forEach((f, i) => {
+        f.classList.toggle('active', i === idx);
+        tabs[i].classList.toggle('active', i === idx);
+      });
+    }
+
+    // SIP Calculation
+    function calculateSIP(event) {
+      event.preventDefault();
+      const P = parseFloat(document.getElementById('sip-amount').value);
+      const r = parseFloat(document.getElementById('sip-rate').value) / 100 / 12;
+      const n = parseInt(document.getElementById('sip-years').value) * 12;
+      const futureValue = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+      const invested = P * n;
+      const gain = futureValue - invested;
+      document.getElementById('sip-result').innerHTML =
+        `<b>Future Value:</b> ₹${futureValue.toLocaleString(undefined, {maximumFractionDigits:0})}<br>` +
+        `<b>Total Invested:</b> ₹${invested.toLocaleString(undefined, {maximumFractionDigits:0})}<br>` +
+        `<b>Wealth Gained:</b> ₹${gain.toLocaleString(undefined, {maximumFractionDigits:0})}`;
+    }
+
+    // Lump Sum Calculation
+    function calculateLumpSum(event) {
+      event.preventDefault();
+      const P = parseFloat(document.getElementById('lump-amount').value);
+      const r = parseFloat(document.getElementById('lump-rate').value) / 100;
+      const n = parseInt(document.getElementById('lump-years').value);
+      const futureValue = P * Math.pow(1 + r, n);
+      const gain = futureValue - P;
+      document.getElementById('lump-result').innerHTML =
+        `<b>Future Value:</b> ₹${futureValue.toLocaleString(undefined, {maximumFractionDigits:0})}<br>` +
+        `<b>Principal:</b> ₹${P.toLocaleString(undefined, {maximumFractionDigits:0})}<br>` +
+        `<b>Wealth Gained:</b> ₹${gain.toLocaleString(undefined, {maximumFractionDigits:0})}`;
+    }
+
+    // EMI Calculation
+    function calculateEMI(event) {
+      event.preventDefault();
+      const P = parseFloat(document.getElementById('emi-principal').value);
+      const annualRate = parseFloat(document.getElementById('emi-rate').value);
+      const r = annualRate / 12 / 100;
+      const n = parseInt(document.getElementById('emi-years').value) * 12;
+      let emi;
+      if (r === 0) {
+        emi = P / n;
+      } else {
+        emi = P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+      }
+      const total = emi * n;
+      const interest = total - P;
+      document.getElementById('emi-result').innerHTML =
+        `<b>Monthly EMI:</b> ₹${emi.toLocaleString(undefined, {maximumFractionDigits:0})}<br>` +
+        `<b>Total Payment:</b> ₹${total.toLocaleString(undefined, {maximumFractionDigits:0})}<br>` +
+        `<b>Total Interest:</b> ₹${interest.toLocaleString(undefined, {maximumFractionDigits:0})}`;
+    }
+  </script>
 </body>
 </html>
+
