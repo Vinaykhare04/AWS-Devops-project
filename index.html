@@ -1,164 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>All-in-One Investment & EMI Calculator</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f8fb; margin: 0; padding: 0; }
-    .container { max-width: 520px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 16px #0001; padding: 32px; }
-    h1 { text-align: center; color: #45caff; margin-bottom: 10px; }
-    .tabs { display: flex; justify-content: center; margin-bottom: 24px; }
-    .tab-btn {
-      flex: 1;
-      padding: 12px 0;
-      background: #e3eafc;
-      border: none;
-      border-radius: 6px 6px 0 0;
-      color: #1a237e;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.2s;
-      margin-right: 2px;
-    }
-    .tab-btn.active { background: #1a73e8; color: #fff; }
-    form { display: none; }
-    form.active { display: block; }
-    label { display: block; margin: 12px 0 4px; color: #333; }
-    input[type="number"] {
-      width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #bfc9d1; margin-bottom: 10px;
-      font-size: 1em; box-sizing: border-box;
-    }
-    input[type="submit"] {
-      background: #1a73e8; color: #fff; border: none; padding: 12px 0; border-radius: 6px;
-      width: 100%; font-size: 1em; font-weight: bold; cursor: pointer; margin-top: 8px;
-      transition: background 0.2s;
-    }
-    input[type="submit"]:hover { background: #1765c1; }
-    .result { background: #e3f2fd; border-radius: 8px; padding: 16px; margin-top: 20px; color: #1a237e; }
-    .explanation { font-size: 0.95em; color: #555; margin-top: 10px; }
-    @media (max-width: 600px) {
-      .container { padding: 12px; }
-      h1 { font-size: 1.5em; }
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Inquiry Form</title>
+<style>
+
+    body { font-family: Arial; background-color: #f9f9f9; padding: 30px; }
+
+    form { max-width: 400px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px #ccc; }
+
+    input, textarea { width: 100%; margin-bottom: 15px; padding: 10px; border-radius: 5px; border: 1px solid #ddd; }
+
+    button { background: #007bff; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>Investment & EMI Calculator-by Vinay</h1>
-    <div class="tabs">
-      <button class="tab-btn active" onclick="showTab(0)">SIP</button>
-      <button class="tab-btn" onclick="showTab(1)">Lump Sum</button>
-      <button class="tab-btn" onclick="showTab(2)">Loan EMI</button>
-    </div>
+<form id="inquiryForm">
+<h2>Inquiry Form</h2>
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+<textarea name="message" placeholder="Your Message" required></textarea>
+<button type="submit">Submit</button>
+</form>
+<script>
 
-    <!-- SIP Calculator -->
-    <form id="sip-form" class="active" onsubmit="calculateSIP(event)">
-      <label for="sip-amount">Monthly Investment (₹):</label>
-      <input type="number" id="sip-amount" min="1" required>
-      <label for="sip-rate">Expected Annual Return (%):</label>
-      <input type="number" id="sip-rate" min="1" step="0.01" required>
-      <label for="sip-years">Investment Period (years):</label>
-      <input type="number" id="sip-years" min="1" required>
-      <input type="submit" value="Calculate SIP">
-      <div class="result" id="sip-result"></div>
-      <div class="explanation">
-        SIP (Systematic Investment Plan) calculates wealth accumulation by investing a fixed amount every month at a given annual return rate.
-      </div>
-    </form>
+    document.getElementById('inquiryForm').onsubmit = async (e) => {
 
-    <!-- Lump Sum Calculator -->
-    <form id="lump-form" onsubmit="calculateLumpSum(event)">
-      <label for="lump-amount">Initial Investment (₹):</label>
-      <input type="number" id="lump-amount" min="1" required>
-      <label for="lump-rate">Expected Annual Return (%):</label>
-      <input type="number" id="lump-rate" min="1" step="0.01" required>
-      <label for="lump-years">Investment Period (years):</label>
-      <input type="number" id="lump-years" min="1" required>
-      <input type="submit" value="Calculate Lump Sum">
-      <div class="result" id="lump-result"></div>
-      <div class="explanation">
-        Lump Sum calculates the future value of a one-time investment at a fixed annual return rate.
-      </div>
-    </form>
+      e.preventDefault();
 
-    <!-- Loan EMI Calculator -->
-    <form id="emi-form" onsubmit="calculateEMI(event)">
-      <label for="emi-principal">Loan Amount (₹):</label>
-      <input type="number" id="emi-principal" min="1" required>
-      <label for="emi-rate">Annual Interest Rate (%):</label>
-      <input type="number" id="emi-rate" min="0.01" step="0.01" required>
-      <label for="emi-years">Loan Tenure (years):</label>
-      <input type="number" id="emi-years" min="1" required>
-      <input type="submit" value="Calculate EMI">
-      <div class="result" id="emi-result"></div>
-      <div class="explanation">
-        EMI (Equated Monthly Installment) is the fixed payment amount made by a borrower to a lender at a specified date each calendar month.
-      </div>
-    </form>
-  </div>
+      const formData = new FormData(e.target);
 
-  <script>
-    // Tab switching logic
-    function showTab(idx) {
-      const forms = [document.getElementById('sip-form'), document.getElementById('lump-form'), document.getElementById('emi-form')];
-      const tabs = document.querySelectorAll('.tab-btn');
-      forms.forEach((f, i) => {
-        f.classList.toggle('active', i === idx);
-        tabs[i].classList.toggle('active', i === idx);
+      const response = await fetch('/submit', {
+
+        method: 'POST',
+
+        body: formData
+
       });
-    }
 
-    // SIP Calculation
-    function calculateSIP(event) {
-      event.preventDefault();
-      const P = parseFloat(document.getElementById('sip-amount').value);
-      const r = parseFloat(document.getElementById('sip-rate').value) / 100 / 12;
-      const n = parseInt(document.getElementById('sip-years').value) * 12;
-      const futureValue = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
-      const invested = P * n;
-      const gain = futureValue - invested;
-      document.getElementById('sip-result').innerHTML =
-        `<b>Future Value:</b> ₹${futureValue.toLocaleString(undefined, {maximumFractionDigits:0})}<br>` +
-        `<b>Total Invested:</b> ₹${invested.toLocaleString(undefined, {maximumFractionDigits:0})}<br>` +
-        `<b>Wealth Gained:</b> ₹${gain.toLocaleString(undefined, {maximumFractionDigits:0})}`;
-    }
+      const result = await response.json();
 
-    // Lump Sum Calculation
-    function calculateLumpSum(event) {
-      event.preventDefault();
-      const P = parseFloat(document.getElementById('lump-amount').value);
-      const r = parseFloat(document.getElementById('lump-rate').value) / 100;
-      const n = parseInt(document.getElementById('lump-years').value);
-      const futureValue = P * Math.pow(1 + r, n);
-      const gain = futureValue - P;
-      document.getElementById('lump-result').innerHTML =
-        `<b>Future Value:</b> ₹${futureValue.toLocaleString(undefined, {maximumFractionDigits:0})}<br>` +
-        `<b>Principal:</b> ₹${P.toLocaleString(undefined, {maximumFractionDigits:0})}<br>` +
-        `<b>Wealth Gained:</b> ₹${gain.toLocaleString(undefined, {maximumFractionDigits:0})}`;
-    }
+      alert(result.message);
 
-    // EMI Calculation
-    function calculateEMI(event) {
-      event.preventDefault();
-      const P = parseFloat(document.getElementById('emi-principal').value);
-      const annualRate = parseFloat(document.getElementById('emi-rate').value);
-      const r = annualRate / 12 / 100;
-      const n = parseInt(document.getElementById('emi-years').value) * 12;
-      let emi;
-      if (r === 0) {
-        emi = P / n;
-      } else {
-        emi = P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
-      }
-      const total = emi * n;
-      const interest = total - P;
-      document.getElementById('emi-result').innerHTML =
-        `<b>Monthly EMI:</b> ₹${emi.toLocaleString(undefined, {maximumFractionDigits:0})}<br>` +
-        `<b>Total Payment:</b> ₹${total.toLocaleString(undefined, {maximumFractionDigits:0})}<br>` +
-        `<b>Total Interest:</b> ₹${interest.toLocaleString(undefined, {maximumFractionDigits:0})}`;
-    }
-  </script>
+      e.target.reset();
+
+    };
+</script>
 </body>
 </html>
-
+ 
