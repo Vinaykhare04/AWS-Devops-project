@@ -1,51 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Inquiry Form</title>
-<style>
-
-    body { font-family: Arial; background-color: #f9f9f9; padding: 30px; }
-
-    form { max-width: 400px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px #ccc; }
-
-    input, textarea { width: 100%; margin-bottom: 15px; padding: 10px; border-radius: 5px; border: 1px solid #ddd; }
-
-    button { background: #007bff; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
-</style>
+  <meta charset="UTF-8">
+  <title>Inquiry Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    form {
+      max-width: 400px;
+      width: 100%;
+      background: #fff;
+      padding: 36px 30px 28px 30px;
+      border-radius: 20px;
+      box-shadow: 0 6px 40px rgba(0,0,0,0.09), 0 1.5px 6px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      animation: fadeInUp 1s cubic-bezier(.25,.46,.45,.94);
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(36px);}
+      to   { opacity: 1; transform: translateY(0);}
+    }
+    h2 {
+      text-align: center;
+      margin: 0 0 10px 0;
+      color: #343860;
+      letter-spacing: .05em;
+      font-size: 1.7rem;
+      font-weight: bold;
+    }
+    input, textarea {
+      font-family: inherit;
+      font-size: 1rem;
+      border: none;
+      outline: none;
+      padding: 13px 14px;
+      border-radius: 7px;
+      margin-bottom: 0;
+      background: #f3f6fa;
+      box-shadow: 0 1.5px 4px rgba(95, 136, 232, 0.06);
+      transition: border 0.2s, box-shadow 0.2s;
+      border: 1.5px solid #ebebeb;
+    }
+    input:focus, textarea:focus {
+      border: 1.5px solid #247efd;
+      box-shadow: 0 0 0 2px #b6cfff66;
+      background: #eef7ff;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+      max-height: 200px;
+    }
+    button {
+      background: linear-gradient(90deg, #007bff 30%, #7ed6df 100%);
+      color: #fff;
+      padding: 12px 0;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.07rem;
+      letter-spacing: .03em;
+      transition: background 0.20s, box-shadow 0.20s, transform 0.10s;
+      box-shadow: 0 4px 15px rgba(62, 103, 235, 0.07);
+    }
+    button:hover, button:focus {
+      background: linear-gradient(90deg, #0062ff 20%, #38a1ec 93%);
+      box-shadow: 0 3px 10px #38a1eca7;
+      transform: translateY(-2px) scale(1.022);
+    }
+    @media (max-width: 500px) {
+      form {
+        padding: 22px 10px 15px 10px;
+        border-radius: 14px;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+      input, textarea {
+        font-size: .97rem;
+        padding: 11px 10px;
+      }
+      button {
+        font-size: 1rem;
+        padding: 10px 0;
+      }
+    }
+  </style>
 </head>
 <body>
-<form id="inquiryForm">
-<h2>Inquiry Form</h2>
-<input type="text" name="name" placeholder="Your Name" required>
-<input type="email" name="email" placeholder="Your Email" required>
-<textarea name="message" placeholder="Your Message" required></textarea>
-<button type="submit">Submit</button>
-</form>
-<script>
-
+  <form id="inquiryForm">
+    <h2>Inquiry Form</h2>
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Submit</button>
+  </form>
+  <script>
     document.getElementById('inquiryForm').onsubmit = async (e) => {
-
       e.preventDefault();
-
       const formData = new FormData(e.target);
-
       const response = await fetch('/submit', {
-
         method: 'POST',
-
         body: formData
-
       });
-
       const result = await response.json();
-
       alert(result.message);
-
       e.target.reset();
-
     };
-</script>
+  </script>
 </body>
 </html>
- 
