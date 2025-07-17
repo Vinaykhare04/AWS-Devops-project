@@ -12,4 +12,3 @@ hooks:
     - location: scripts/start_nginx.sh
       timeout: 180
       runas: root
- 
